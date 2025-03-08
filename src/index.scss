@@ -1,0 +1,217 @@
+@import '../node_modules/minireset.css/minireset.min.css';
+@import '../node_modules/@shoelace-style/shoelace/dist/themes/light.css';
+@import '../node_modules/@shoelace-style/shoelace/dist/themes/dark.css';
+
+html {
+  font-size: 18px;
+  font-family: var(--sl-font-mono);
+}
+
+:root {
+  --cols: 5;
+  --rows: 6;
+}
+
+.app {
+  --pad: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  max-height: 100vh;
+  gap: var(--pad);
+
+  &__mid {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    flex: 1;
+  }
+
+  @media screen and (max-width: 480px) {
+    --pad: 1rem;
+  }
+}
+
+.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--pad);
+  width: 100%;
+  padding: var(--pad);
+  padding-bottom: 0;
+
+  &__brand {
+    font-size: 1.2rem;
+  }
+}
+
+sl-dialog::part(base) {
+  --header-spacing: 0;
+}
+
+sl-dialog::part(panel) {
+  width: 100%;
+  max-width: 600px;
+}
+
+sl-dialog::part(body) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pad);
+}
+
+.helpDialog {
+  &__con {
+    display: flex;
+    gap: var(--pad)
+  }
+
+  &__block {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    &--0 {
+      background: gray;
+    }
+
+    &--1 {
+      background: blue;
+    }
+
+    &--2 {
+      background: green;
+    }
+  }
+}
+
+.giveUpDialog {
+  &::part(body) {
+    align-items: center;
+    text-align: center;
+  }
+
+  &__con {
+    display: flex;
+    align-items: center;
+    gap: var(--pad);
+  }
+}
+
+.gameOverDialog {
+  &::part(body) {
+    align-items: center;
+  }
+
+  sl-button::part(label) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.wrongWordAlert::part(base) {
+  position: fixed;
+  top: 2.5rem;
+  left: 2.5rem;
+}
+
+.themeBtn::part(label) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.board {
+  display: grid;
+  grid-template:
+    repeat(var(--rows), minmax(0, 1fr)) /
+    repeat(var(--cols), minmax(0, 1fr));
+  gap: 0.25rem;
+  flex: 1;
+  height: 100%;
+  max-height: 420px;
+  aspect-ratio: var(--cols) / var(--rows);
+  padding: var(--pad);
+
+  &__letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--sl-input-border-color);
+    height: 100%;
+    width: 100%;
+
+    &--0 {
+      background-color: darkgray;
+      color: white;
+    }
+
+    &--1 {
+      background-color: blue;
+      color: white;
+    }
+
+    &--2 {
+      background-color: green;
+      color: white;
+    }
+  }
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: var(--pad);
+  width: 100%;
+  max-width: 500px;
+  padding: 0.5rem;
+
+  &__key {
+    flex: 1;
+
+    &::part(label) {
+      padding: 0 0;
+    }
+
+    &--enter {
+      &::part(label) {
+        padding: 0 var(--sl-spacing-small);
+        /*shoelace default*/
+      }
+    }
+
+    &::part(base) {
+      height: 2rem;
+      flex: 1;
+      background-color: transparent;
+      border: 1px solid var(--sl-input-border-color);
+      font-weight: bold;
+      touch-action: manipulation;
+    }
+
+    &--0 {
+      background-color: darkgray;
+      color: white;
+    }
+
+    &--1 {
+      background-color: blue;
+      color: white;
+    }
+
+    &--2 {
+      background-color: green;
+      color: white;
+    }
+  }
+
+  &__row {
+    display: flex;
+    gap: 0.25rem;
+    width: 100%;
+  }
+}
